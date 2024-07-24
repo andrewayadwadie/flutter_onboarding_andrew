@@ -163,52 +163,48 @@ class _FlutterOnBoardingState extends State<FlutterOnBoarding> {
         ? widget.loadingWidget ??
             const Center(child: CircularProgressIndicator())
         : SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Stack(
-                children: [
-                  PageView.builder(
-                    itemCount: widget.pages.length,
-                    controller: pageController,
-                    physics: widget.physics,
-                    onPageChanged: (value) {
-                      setState(() {
-                        currentPage = value;
-                      });
-                    },
-                    scrollDirection: widget.scrollDirection == Axis.vertical
-                        ? Axis.vertical
-                        : Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      bool isLastPage = index == widget.pages.length - 1;
-                      IntroModel introModel = widget.pages[index];
-                      return Column(
-                        children: [
-                          // image
-                          _buildMainPageContent(introModel, context),
+            child: Stack(
+              children: [
+                PageView.builder(
+                  itemCount: widget.pages.length,
+                  controller: pageController,
+                  physics: widget.physics,
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentPage = value;
+                    });
+                  },
+                  scrollDirection: widget.scrollDirection == Axis.vertical
+                      ? Axis.vertical
+                      : Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    bool isLastPage = index == widget.pages.length - 1;
+                    IntroModel introModel = widget.pages[index];
+                    return Column(
+                      children: [
+                        // image
+                        _buildMainPageContent(introModel, context),
 
-                          const SizedBox(height: 32.0),
+                        const SizedBox(height: 32.0),
 
-                          if (widget.scrollDirection != Axis.vertical)
-                            widget.indicator ?? _buildIndicators(),
+                        if (widget.scrollDirection != Axis.vertical)
+                          widget.indicator ?? _buildIndicators(),
 
-                          // button
-                          widget.navigationControl ??
-                              _buildNavigationSection(
-                                  isLastPage, context, index),
-                          const SizedBox(height: 32.0),
-                        ],
-                      );
-                    },
+                        // button
+                        widget.navigationControl ??
+                            _buildNavigationSection(isLastPage, context, index),
+                        const SizedBox(height: 32.0),
+                      ],
+                    );
+                  },
+                ),
+                if (widget.scrollDirection == Axis.vertical)
+                  Positioned(
+                    right: 0.0,
+                    top: 0.0,
+                    child: widget.indicator ?? _buildIndicators(),
                   ),
-                  if (widget.scrollDirection == Axis.vertical)
-                    Positioned(
-                      right: 0.0,
-                      top: 0.0,
-                      child: widget.indicator ?? _buildIndicators(),
-                    ),
-                ],
-              ),
+              ],
             ),
           );
   }
@@ -221,35 +217,32 @@ class _FlutterOnBoardingState extends State<FlutterOnBoarding> {
     return Expanded(
       child: Center(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // image
-                introModel.image,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // image
+              introModel.image,
 
-                const SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
 
-                // title
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                    horizontal: 32.0,
-                  ),
-                  child: introModel.title,
+              // title
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 32.0,
                 ),
+                child: introModel.title,
+              ),
 
-                // description
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                    horizontal: 32.0,
-                  ),
-                  child: introModel.description,
+              // description
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 32.0,
                 ),
-              ],
-            ),
+                child: introModel.description,
+              ),
+            ],
           ),
         ),
       ),
