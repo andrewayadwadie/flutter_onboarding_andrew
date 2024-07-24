@@ -214,35 +214,32 @@ class _FlutterOnBoardingState extends State<FlutterOnBoarding> {
     return Expanded(
       child: Center(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // image
-                introModel.image,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // image
+              introModel.image,
 
-                const SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
 
-                // title
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                    horizontal: 32.0,
-                  ),
-                  child: introModel.title,
+              // title
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 32.0,
                 ),
+                child: introModel.title,
+              ),
 
-                // description
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                    horizontal: 32.0,
-                  ),
-                  child: introModel.description,
+              // description
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 32.0,
                 ),
-              ],
-            ),
+                child: introModel.description,
+              ),
+            ],
           ),
         ),
       ),
