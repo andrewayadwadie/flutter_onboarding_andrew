@@ -218,11 +218,7 @@ class _FlutterOnBoardingState extends State<FlutterOnBoarding> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // image
-              Container(
-                  width: double.infinity,
-                  height: 800,
-                  color: Colors.red,
-                  child: introModel.image),
+              introModel.image,
 
               const SizedBox(height: 32.0),
 
